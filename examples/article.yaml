@@ -1,0 +1,15 @@
+# by default get first header if any
+title: name-of-article
+# by default without version
+version: 0.0.1
+# default (false)
+publish: false
+# default (none)
+licence: none
+# by default empty
+tags:
+  - test
+  - experiment
+  - jupyter-to-medium
+# default
+source: article.md
