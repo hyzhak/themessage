@@ -1,7 +1,7 @@
 from flask import abort, Blueprint, jsonify, request, Response
 import logging
 import medium
-from shenanigan import medium_integration
+from themessage import medium_integration
 
 logger = logging.getLogger(__name__)
 

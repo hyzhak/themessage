@@ -6,7 +6,7 @@ logger = logging.getLogger('main')
 from flask import Flask, jsonify
 import medium
 import os
-from shenanigan import medium_integration, server
+from themessage import medium_integration, server
 
 app = Flask(__name__)
 app.register_blueprint(server.medium_blueprint, url_prefix='/medium')
