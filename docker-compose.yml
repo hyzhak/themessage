@@ -11,6 +11,3 @@ services:
     env_file:
       - ./config/medium.env
       - ./config/python.env
-    ports:
-      - "8765:8765"
-#    restart: always

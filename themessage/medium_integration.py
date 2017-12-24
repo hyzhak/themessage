@@ -2,6 +2,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+import jwt
 import medium
 import os
 
@@ -18,11 +19,16 @@ def authorize(code):
     return auth['access_token']
 
 
-def get_url(secret_status='qwerty'):
+def get_url(user_id):
     # Build the URL where you can send the user to obtain an authorization code.
     # Arbitrary text of your choosing, which we will repeat back to you to help you prevent request forgery.
 
-    return client.get_authorization_url(secret_status,
+    user_jwt = jwt.encode({'user_id': user_id},
+                          os.environ.get('JWT_SECRET'),
+                          algorithm='HS256',
+                          )
+
+    return client.get_authorization_url(user_jwt,
                                         os.environ.get('MEDIUM_APP_CALLBACK_URL'),
                                         ['basicProfile', 'listPublications', 'publishPost',
                                          # Integrations are not permitted to request extended scope
