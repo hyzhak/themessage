@@ -23,7 +23,7 @@ def main():
 
         logger.info(f'[!] tap here: {auth_url}')
 
-        # TODO: request code from server and wait
+        # request code from server and wait
         # change a code to the token
         # once we get token store it
         query_url = os.environ['MEDIUM_APP_AUTH_CODE_SUBSCRIBE_URL'].format(
@@ -40,7 +40,9 @@ def main():
         token = medium_integration.authorize(code)
         logger.info(f'receive token {token}')
         # TODO: store user's token
-        # publish article by user token
+
+    # TODO: publish article by user token
+    pass
 
 
 if __name__ == '__main__':

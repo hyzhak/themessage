@@ -12,6 +12,12 @@ client = medium.Client(application_id=os.environ.get('MEDIUM_APP_ID'),
 
 
 def authorize(code):
+    """
+    get user access token by authorize code
+
+    :param code:
+    :return: token
+    """
     # Exchange the authorization code for an access token (maybe jwt?).
     auth = client.exchange_authorization_code(code,
                                               os.environ.get('MEDIUM_APP_CALLBACK_URL'))
@@ -20,8 +26,15 @@ def authorize(code):
 
 
 def get_url(user_id):
-    # Build the URL where you can send the user to obtain an authorization code.
-    # Arbitrary text of your choosing, which we will repeat back to you to help you prevent request forgery.
+    """
+    Build the URL where you can send the user to obtain
+    an authorization code.
+    Arbitrary text of your choosing, which we will repeat
+    back to you to help you prevent request forgery.
+
+    :param user_id:
+    :return: url
+    """
 
     user_jwt = jwt.encode({'user_id': user_id},
                           os.environ.get('JWT_SECRET'),
@@ -57,6 +70,16 @@ def publish(token,
             title, content,
             content_format='markdown',
             publish_status='draft'):
+    """
+    publish an article to a medium blog
+
+    :param token:
+    :param title:
+    :param content:
+    :param content_format:
+    :param publish_status:
+    :return:
+    """
     client.access_token = token
     # Get profile details of the user identified by the access token.
     user = client.get_current_user()
