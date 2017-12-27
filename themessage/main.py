@@ -6,6 +6,7 @@ logger = logging.getLogger('main')
 import os
 import requests
 from themessage import medium_integration
+import uuid
 
 
 def main():
@@ -15,8 +16,7 @@ def main():
     # If we don't have token, ask user to authorize
     token = None
     if not token:
-        # TODO: should generate uniq user id
-        user_id = 'qwerty'
+        user_id = str(uuid.uuid1())
         auth_url = medium_integration.get_url(
             user_id=user_id,
         )
