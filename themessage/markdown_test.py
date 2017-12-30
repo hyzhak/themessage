@@ -8,3 +8,7 @@ def test_get_header_of_md_with_header():
          'Hello World!'
 
     assert markdown.get_header(md) == 'Header !'
+
+
+def test_get_header_of_emtpy_md_is_none():
+    assert markdown.get_header('') is None
