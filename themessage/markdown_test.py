@@ -13,6 +13,18 @@ def test_title_of_md_with_header_is_the_first_header():
     assert markdown.get_title(md) == 'A Vision in a Dream.'
 
 
+def test_title_of_md_with_header_is_the_first_header_of_any_level():
+    md = '#### A Vision in a Dream.\n' \
+         'In Xanadu did Kubla Khan\n' \
+         'A stately pleasure-dome decree:\n' \
+         'Where Alph, the sacred river, ran\n' \
+         'Through caverns measureless to man\n' \
+         '    Down to a sunless sea.\n' \
+         '# The End'
+
+    assert markdown.get_title(md) == 'A Vision in a Dream.'
+
+
 def test_header_of_an_empty_md_is_none():
     assert markdown.get_title('') is None
 

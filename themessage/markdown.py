@@ -1,3 +1,8 @@
+import re
+
+header_regex = re.compile('(#+)\s*(.*)')
+
+
 def get_title(md):
     """
     get title of markdown text.
@@ -11,7 +16,7 @@ def get_title(md):
         return None
 
     first_line = md_lines[0].strip()
-    if first_line[:2] == '# ':
-        return first_line[2:]
-
-    return None
+    match = header_regex.search(first_line)
+    if match is None:
+        return None
+    return match.group(2)
