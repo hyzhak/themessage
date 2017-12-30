@@ -1,4 +1,11 @@
-def get_header(md):
+def get_title(md):
+    """
+    get title of markdown text.
+    It will be any header on first none empty line
+
+    :param md:
+    :return:
+    """
     md_lines = md.strip().splitlines()
     if len(md_lines) == 0:
         return None
