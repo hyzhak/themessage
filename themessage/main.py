@@ -1,5 +1,5 @@
 import logging
-from themessage import medium_integration, medium_auth
+from themessage import markdown, medium_integration, medium_auth
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('main')
@@ -20,7 +20,7 @@ def main():
         md = f.read()
         # should try to extract from file.md
         # and file.yaml
-        title = 'Test Article'
+        title = markdown.get_title(md) or 'New Article'
         # {
         #     'canonicalUrl': '',
         #     'license': 'all-rights-reserved',
