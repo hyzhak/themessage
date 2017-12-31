@@ -7,19 +7,16 @@ logger = logging.getLogger('main')
 
 def main():
     # publish article
-    # could use this example https://github.com/Medium/medium-sdk-python
+    # TODO: get token from arguments or env variables
+    token = None
 
     # If we don't have token, ask user to authorize
-    token = None
     if not token:
         token = medium_auth.request_token()
         # TODO: store user's token and restore it next time when app will run
 
-    # TODO: publish article by user token
     with open('examples/article.md') as f:
         md = f.read()
-        # should try to extract from file.md
-        # and file.yaml
         title = markdown.get_title(md) or 'New Article'
         # {
         #     'canonicalUrl': '',
