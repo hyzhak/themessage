@@ -1,5 +1,8 @@
 # Level of Markdown support in Medium
 
+![Headline Image](http://web.archive.org/web/0if_/http:/http://placekitten.com/1200/900)
+**TODO**: *Still have question - how could I show it as headliner?*
+
 according to https://blog.medium.com/accepted-markup-for-medium-s-publishing-api-a4367010924e
 this https://daringfireball.net/projects/markdown/syntax should work
 
