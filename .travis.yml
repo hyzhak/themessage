@@ -1,0 +1,14 @@
+language: python
+
+python:
+  - "3.6"
+
+before_install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+
+script:
+  - py.test --cov themessage --cov-report term-missing
+
+after_success:
+  - coveralls
