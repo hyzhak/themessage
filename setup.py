@@ -1,8 +1,12 @@
 from setuptools import find_packages, setup
 
+version = 'unknown'
+with open('./themessage/version.txt') as f:
+    version = f.read()
+
 setup(
     name='themessage',
-    version='0.1',
+    version=version,
     py_modules=find_packages(),
     install_requires=[
         'Click==6.7',
