@@ -1,3 +1,4 @@
+import click
 import logging
 from themessage import markdown, medium_integration, medium_auth
 
@@ -5,17 +6,37 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('main')
 
 
-def main():
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+def login():
+    token = medium_auth.request_token()
+    click.echo(token)
+
+
+@cli.command()
+@click.option('--token',
+              default=None,
+              help='User token. Use command --auth to get it',
+              )
+@click.argument('ARTICLE', default=None)
+def publish(token, article):
     # publish article
-    # TODO: get token from arguments or env variables
-    token = None
+    click.echo('publish article')
+    if token is None:
+        # TODO: get token from env variables
+        pass
 
     # If we don't have token, ask user to authorize
     if not token:
         token = medium_auth.request_token()
         # TODO: store user's token and restore it next time when app will run
 
-    with open('examples/article.md') as f:
+    # with open('examples/article.md') as f:
+    with open(article) as f:
         md = f.read()
         title = markdown.get_title(md) or 'New Article'
         # {
@@ -33,5 +54,4 @@ def main():
 
 
 if __name__ == '__main__':
-    logger.info('just before run main')
-    main()
+    cli()
