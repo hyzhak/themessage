@@ -57,7 +57,3 @@ def publish(token, article):
 @cli.command()
 def version():
     click.echo(themessage.__version__)
-
-
-if __name__ == '__main__':
-    cli()
