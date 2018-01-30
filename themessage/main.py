@@ -22,15 +22,13 @@ def login():
 @cli.command()
 @click.option('--token',
               default=None,
+              envvar='MEDIUM_AUTH_TOKEN',
               help='User token. Use command --auth to get it',
               )
 @click.argument('ARTICLE', default=None, type=click.File())
 def publish(token, article):
     # publish article
     click.echo('publish article')
-    if token is None:
-        # TODO: get token from env variables
-        pass
 
     # If we don't have token, ask user to authorize
     if not token:
