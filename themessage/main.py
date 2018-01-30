@@ -8,6 +8,7 @@ logger = logging.getLogger('main')
 
 
 @click.group()
+@click.version_option(version=themessage.__version__)
 def cli():
     pass
 
@@ -52,8 +53,3 @@ def publish(token, article):
     # }
     res = medium_integration.publish(token, title, md)
     logger.info(f'Article available on {res["url"]}')
-
-
-@cli.command()
-def version():
-    click.echo(themessage.__version__)
