@@ -1,5 +1,6 @@
 import click
 import logging
+import themessage
 from themessage import markdown, medium_integration, medium_auth
 
 logging.basicConfig(level=logging.INFO)
@@ -51,6 +52,11 @@ def publish(token, article):
         # }
         res = medium_integration.publish(token, title, md)
         logger.info(f'Article available on {res["url"]}')
+
+
+@cli.command()
+def version():
+    click.echo(themessage.__version__)
 
 
 if __name__ == '__main__':
