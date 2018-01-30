@@ -23,7 +23,7 @@ def login():
               default=None,
               help='User token. Use command --auth to get it',
               )
-@click.argument('ARTICLE', default=None)
+@click.argument('ARTICLE', default=None, type=click.File())
 def publish(token, article):
     # publish article
     click.echo('publish article')
@@ -37,21 +37,21 @@ def publish(token, article):
         # TODO: store user's token and restore it next time when app will run
 
     # with open('examples/article.md') as f:
-    with open(article) as f:
-        md = f.read()
-        title = markdown.get_title(md) or 'New Article'
-        # {
-        #     'canonicalUrl': '',
-        #     'license': 'all-rights-reserved',
-        #     'title': 'My Title',
-        #     'url': 'https://medium.com/@kylehg/55050649c95',
-        #     'tags': ['python', 'is', 'great'],
-        #     'authorId': '1f86...',
-        #     'publishStatus': 'draft',
-        #     'id': '55050649c95'
-        # }
-        res = medium_integration.publish(token, title, md)
-        logger.info(f'Article available on {res["url"]}')
+    # with open(article) as f:
+    md = article.read()
+    title = markdown.get_title(md) or 'New Article'
+    # {
+    #     'canonicalUrl': '',
+    #     'license': 'all-rights-reserved',
+    #     'title': 'My Title',
+    #     'url': 'https://medium.com/@kylehg/55050649c95',
+    #     'tags': ['python', 'is', 'great'],
+    #     'authorId': '1f86...',
+    #     'publishStatus': 'draft',
+    #     'id': '55050649c95'
+    # }
+    res = medium_integration.publish(token, title, md)
+    logger.info(f'Article available on {res["url"]}')
 
 
 @cli.command()
