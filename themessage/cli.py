@@ -7,6 +7,16 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('main')
 
 
+def __request_token():
+    click.echo('We are going to get user auth token. '
+               'To be able to publish article on Medium')
+    user_id, auth_url = medium_auth.send_request_for_token()
+    click.echo(f'[!] tap here to login: {auth_url}')
+    token = medium_auth.wait_for_token(user_id)
+    click.echo(f'[!] we got token: {token}')
+    return token
+
+
 @click.group()
 @click.version_option(version=themessage.__version__)
 def main():
@@ -18,8 +28,7 @@ def login():
     """
     Request user's token
     """
-    token = medium_auth.request_token()
-    click.echo(token)
+    __request_token()
 
 
 @main.command()
@@ -34,7 +43,7 @@ def login():
                 type=click.File(),
                 )
 def publish(token, article):
-                # help='path to the article'
+    # help='path to the article'
     """
     Publish article to the Medium
     """
@@ -43,7 +52,7 @@ def publish(token, article):
 
     # If we don't have token, ask user to authorize
     if not token:
-        token = medium_auth.request_token()
+        token = __request_token()
         # TODO: store user's token and restore it next time when app will run
 
     # with open('examples/article.md') as f:
