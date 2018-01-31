@@ -1,3 +1,4 @@
+import themessage
 from themessage import cli
 from click.testing import CliRunner
 import pytest
@@ -13,3 +14,10 @@ def test_blank(command):
     result = runner.invoke(cli.main)
     assert result.exit_code == 0
     assert command in result.output
+
+
+def test_version():
+    runner = CliRunner()
+    result = runner.invoke(cli.main, ['--version'])
+    assert result.exit_code == 0
+    assert themessage.__version__ in result.output
