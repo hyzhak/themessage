@@ -15,6 +15,9 @@ def cli():
 
 @cli.command()
 def login():
+    """
+    Request user's token
+    """
     token = medium_auth.request_token()
     click.echo(token)
 
@@ -30,6 +33,10 @@ def login():
                 type=click.File(),
                 )
 def publish(token, article):
+                # help='path to the article'
+    """
+    Publish article to the Medium
+    """
     # publish article
     click.echo('publish article')
 
