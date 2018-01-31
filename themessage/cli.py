@@ -48,7 +48,7 @@ def publish(token, article):
     Publish article to the Medium
     """
     # publish article
-    click.echo('publish article')
+    click.echo(f'We are going to publish article {article.name}')
 
     # If we don't have token, ask user to authorize
     if not token:
@@ -70,4 +70,4 @@ def publish(token, article):
     #     'id': '55050649c95'
     # }
     res = medium_integration.publish(token, title, md)
-    logger.info(f'Article available on {res["url"]}')
+    click.echo(f'Article available on {res["url"]}')
