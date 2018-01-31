@@ -23,7 +23,7 @@ def login():
 @click.option('--token',
               default=None,
               envvar='MEDIUM_AUTH_TOKEN',
-              help='User token. Use command --auth to get it',
+              help='User token. Use command login to get it',
               )
 @click.argument('article', default=None,
                 envvar='THEMESSAGE_ARTICLE_FILE',
