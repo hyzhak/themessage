@@ -28,7 +28,8 @@ def login():
               envvar='MEDIUM_AUTH_TOKEN',
               help='User token. Use command login to get it',
               )
-@click.argument('article', default=None,
+@click.argument('article',
+                required=False,
                 envvar='THEMESSAGE_ARTICLE_FILE',
                 type=click.File(),
                 )
