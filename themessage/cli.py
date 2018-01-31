@@ -9,11 +9,11 @@ logger = logging.getLogger('main')
 
 @click.group()
 @click.version_option(version=themessage.__version__)
-def cli():
+def main():
     pass
 
 
-@cli.command()
+@main.command()
 def login():
     """
     Request user's token
@@ -22,7 +22,7 @@ def login():
     click.echo(token)
 
 
-@cli.command()
+@main.command()
 @click.option('--token',
               default=None,
               envvar='MEDIUM_AUTH_TOKEN',
