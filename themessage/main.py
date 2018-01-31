@@ -25,7 +25,10 @@ def login():
               envvar='MEDIUM_AUTH_TOKEN',
               help='User token. Use command --auth to get it',
               )
-@click.argument('ARTICLE', default=None, type=click.File())
+@click.argument('article', default=None,
+                envvar='THEMESSAGE_ARTICLE_FILE',
+                type=click.File(),
+                )
 def publish(token, article):
     # publish article
     click.echo('publish article')
