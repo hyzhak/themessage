@@ -18,6 +18,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        themessage=themessage.main:cli
+        themessage=themessage.cli:cli
     ''',
 )
