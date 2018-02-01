@@ -29,17 +29,26 @@ def _wait_auth_code(user_id):
     return code
 
 
-def request_token():
-    user_id = str(uuid.uuid1())
+def send_request_for_token(user_id=None):
+    """
+    make request for token
+    :return:
+    """
+    user_id = user_id or str(uuid.uuid1())
 
     auth_url = medium_integration.get_url(
         user_id=user_id,
     )
-    logger.info(f'[!] tap here: {auth_url}')
+    return (user_id, auth_url)
 
+
+def wait_for_token(user_id):
+    """
+    wait for token for user_id
+
+    :param user_id:
+    :return:
+    """
     code = _wait_auth_code(user_id)
-
     # change a code to the token
-    token = medium_integration.authorize(code)
-    logger.debug(f'receive token {token}')
-    return token
+    return medium_integration.authorize(code)
