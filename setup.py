@@ -14,7 +14,7 @@ setup(
         'PyJWT==1.5.3',
         'pytest==3.3.2',
         'pytest-cov==2.5.1',
-        'requests==2.18.4',
+        'requests==2.20.0',
     ],
     entry_points='''
         [console_scripts]
