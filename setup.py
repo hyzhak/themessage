@@ -11,7 +11,7 @@ setup(
     install_requires=[
         'Click==6.7',
         'medium==0.3.0',
-        'PyJWT==1.5.3',
+        'PyJWT==2.4.0',
         'pytest==3.3.2',
         'pytest-cov==2.5.1',
         'requests==2.18.4',
